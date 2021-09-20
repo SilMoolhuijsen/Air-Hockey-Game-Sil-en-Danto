@@ -1,11 +1,26 @@
+class Block {
+  constructor(x, y, w, h) {
+    this.x = x; 
+    this.y = y;
+    this.w = w;
+    this.h = h;
+  }
+    drawBall() {
+    rect(this.x, this.y, this.w, this.h);
+    }
+}
+
 function setup() {
 	createCanvas(500, 400);
+  block_links = new Block(0, 400, 500, 10)
 }
 
 var [xpos, ypos, xspeed, yspeed] = [225, 225, 0, 0];
 
 function draw() {
 	background(225);
+
+  block_links.drawBlock();
 	
 	fill(0);
 	text("Use the arrow keys (or WASD) to move the square around", 25, 25);
