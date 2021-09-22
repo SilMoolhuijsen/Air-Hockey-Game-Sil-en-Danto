@@ -1,3 +1,28 @@
+class Puck {
+  constructor(x, y, w, h, vx, vy) {
+    this.x = x; 
+    this.y = y;
+    this.w = w;
+    this.h = h;
+    this.vx = vx;
+    this.vy = vy;
+  }
+   drawPuck() {
+    ellipse(this.x, this.y, this.w, this.h, this.vx, this.vy);
+    this.x = this.x + this.vx;
+    this.y = this.y + this.vy;
+        
+    if (this.x <= 20 || this.x >= 480) {
+      this.vx = this.vx * -1;
+    }
+    if (this.y <= 24 || this.y >= 380) {
+      this.vy = this.vy * -1;
+    }
+   }
+}
+   
+  
+
 class Block {
   constructor(x, y, w, h) {
     this.x = x; 
@@ -18,6 +43,7 @@ function setup() {
   block_benedenR = new Block(300,390,200,10);
   block_bovenL = new Block(0,0,200,10);
   block_bovenR = new Block(300,0,200,10);
+  Puck1 = new Puck(300,300,50,50,5,5)
 }
 
 //var [xpos, ypos, xspeed, yspeed] = [225, 225, 0, 0];
@@ -30,6 +56,7 @@ function draw() {
   block_benedenR.drawBlock();
   block_bovenL.drawBlock();
   block_bovenR.drawBlock();
+  Puck1.drawPuck();
   fill(0);
 
 
