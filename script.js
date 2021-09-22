@@ -39,10 +39,11 @@ function setup() {
 	createCanvas(500, 400);
   block_links = new Block(0,0,10,400);
   block_rechts = new Block(489,0,10,400);
-  block_benedenL = new Block(0,390,200,10);
-  block_benedenR = new Block(300,390,200,10);
-  block_bovenL = new Block(0,0,200,10);
-  block_bovenR = new Block(300,0,200,10);
+  block_benedenL = new Block(0,390,175,10);
+  block_benedenR = new Block(325,390,175,10);
+  block_bovenL = new Block(0,0,175,10);
+  block_bovenR = new Block(325,0,175,10);
+  block_speler = new Block(200,350,100,10)
   Puck1 = new Puck(300,300,50,50,5,5)
 }
 
@@ -56,6 +57,7 @@ function draw() {
   block_benedenR.drawBlock();
   block_bovenL.drawBlock();
   block_bovenR.drawBlock();
+  block_speler.drawBlock();
   Puck1.drawPuck();
   fill(0);
 
