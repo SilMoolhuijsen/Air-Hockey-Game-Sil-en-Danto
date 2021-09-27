@@ -24,8 +24,6 @@ class Puck {
   }
 }
 
-
-
 class Block {
   constructor(x, y, w, h) {
     this.x = x;
@@ -64,17 +62,14 @@ function draw() {
   puck1.drawPuck();
   fill(0);
 
-  if (puck1.y + puck1.h > block_speler.y) {
-    if (puck1.x + puck1.w > block_speler.x) {
+  if (puck1.y + 0.5 * puck1.h > block_speler.y) {
+    if (puck1.x + 0.5 * puck1.w > block_speler.x) {
       puck1.vy = puck1.vy * -1;     
     }
   }
   else{
     puck1.c = "black";
   }
-
-
-
 }
 
 // 	fill(0);
