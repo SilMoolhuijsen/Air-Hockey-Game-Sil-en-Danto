@@ -44,7 +44,7 @@ function setup() {
   block_benedenR = new Block(325, 390, 175, 10);
   block_bovenL = new Block(0, 0, 175, 10);
   block_bovenR = new Block(325, 0, 175, 10);
-  block_speler = new Block(200, 350, 100, 10)
+  block_speler = new Block(210, 350, 80, 10)
   puck1 = new Puck(300, 300, 50, 50, 5, 5, "black")
 }
 
@@ -62,10 +62,11 @@ function draw() {
   puck1.drawPuck();
   fill(0);
 
-  if (puck1.y + 0.5 * puck1.h > block_speler.y) {
-    if (puck1.x + 0.5 * puck1.w > block_speler.x) {
-      puck1.vy = puck1.vy * -1;     
+  if (puck1.y + 0.6 * puck1.h > block_speler.y && puck1.y < block_speler.y + block_speler.h){
+    if (puck1.x + 0.6 * puck1.w > block_speler.x && puck1.x < block_speler.x + block_speler.w){
+      puck1.vy = puck1.vy * -1;
     }
+    
   }
   else{
     puck1.c = "black";
