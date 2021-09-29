@@ -33,19 +33,22 @@ class Block {
   }
   drawBlock() {
     rect(this.x, this.y, this.w, this.h);
+    
   }
 }
 
 class Spelerblocks {
-  constructor(x, y, w, h,) {
+  constructor(x, y, w, h, xspeed) {
     this.x = x;
     this.y = y;
     this.w = w;
     this.h = h;
+    this.xspeed = xspeed;
     
   }
   drawSpelerblocks() {
-    rect(this.x, this.y, this.w, this.h,);
+    rect(this.x, this.y, this.w, this.h, this.xspeed);
+    this.x = this.x + this.xspeed;
     
   }
 }
@@ -58,7 +61,7 @@ function setup() {
   block_benedenR = new Block(325, 390, 175, 10);
   block_bovenL = new Block(0, 0, 175, 10);
   block_bovenR = new Block(325, 0, 175, 10);
-  block_speler = new Spelerblocks(210, 350, 80, 10)
+  block_speler = new Spelerblocks(210, 350, 80, 10, 0)
   puck1 = new Puck(300, 300, 50, 50, 5, 5, "black")
 }
 
@@ -97,44 +100,44 @@ function draw() {
 // 	if(ypos >= 0 && ypos + 50 <= 500) ypos += yspeed;
 // }
 
-// function keyPressed() {
-// 	switch(keyCode) {
-// 		case 37:
-// 		case 65:
-// 			xspeed = -2;
-// 			break;
-// 		case 39:
-// 		case 68:
-// 			xspeed = 2;
-// 			break;
-// 		case 38:
-// 		case 87:
-// 			yspeed = -2;
-// 			break;
-// 		case 40:
-// 		case 83:
-// 			yspeed = 2;
-// 			break;
-// 	}
-// }
+function keyPressed() {
+	switch(keyCode) {
+		case 37:
+		case 65:
+			block_speler.xspeed = 2
+			break;
+		case 39:
+		case 68:
+			block_speler.xspeed = -2;
+			break;
+		case 38:
+		case 87:
+			yspeed = -2;
+			break;
+		case 40:
+		case 83:
+			yspeed = 2;
+			break;
+	}
+}
 
-// function keyReleased() {
-// 	switch(keyCode) {
-// 		case 37:
-// 		case 65:
-// 			xspeed = 0;
-// 			break;
-// 		case 39:
-// 		case 68:
-// 			xspeed = 0;
-// 			break;
-// 		case 38:
-// 		case 87:
-// 			yspeed = 0;
-// 			break;
-// 		case 40:
-// 		case 83:
-// 			yspeed = 0;
-// 			break;
-// 	}
-// }
+function keyReleased() {
+	switch(keyCode) {
+		case 37:
+		case 65:
+			block_speler.xspeed = 0;
+			break;
+		case 39:
+		case 68:
+			block_speler.xspeed = 0;
+			break;
+		case 38:
+		case 87:
+			yspeed = 0;
+			break;
+		case 40:
+		case 83:
+			yspeed = 0;
+			break;
+	}
+}
