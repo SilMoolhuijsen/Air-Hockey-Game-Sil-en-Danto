@@ -36,6 +36,20 @@ class Block {
   }
 }
 
+class Spelerblocks {
+  constructor(x, y, w, h,) {
+    this.x = x;
+    this.y = y;
+    this.w = w;
+    this.h = h;
+    
+  }
+  drawSpelerblocks() {
+    rect(this.x, this.y, this.w, this.h,);
+    
+  }
+}
+
 function setup() {
   createCanvas(500, 400);
   block_links = new Block(0, 0, 10, 400);
@@ -44,7 +58,7 @@ function setup() {
   block_benedenR = new Block(325, 390, 175, 10);
   block_bovenL = new Block(0, 0, 175, 10);
   block_bovenR = new Block(325, 0, 175, 10);
-  block_speler = new Block(210, 350, 80, 10)
+  block_speler = new Spelerblocks(210, 350, 80, 10)
   puck1 = new Puck(300, 300, 50, 50, 5, 5, "black")
 }
 
@@ -58,7 +72,7 @@ function draw() {
   block_benedenR.drawBlock();
   block_bovenL.drawBlock();
   block_bovenR.drawBlock();
-  block_speler.drawBlock();
+  block_speler.drawSpelerblocks();
   puck1.drawPuck();
   fill(0);
 
