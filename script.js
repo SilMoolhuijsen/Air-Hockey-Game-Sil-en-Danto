@@ -62,6 +62,7 @@ function setup() {
   block_bovenL = new Block(0, 0, 175, 10);
   block_bovenR = new Block(325, 0, 175, 10);
   block_speler = new Spelerblocks(210, 350, 80, 10, 0)
+  block_speler_2 = new Spelerblocks(210, 50, 80, 10, 0)
   puck1 = new Puck(300, 300, 50, 50, 5, 5, "black")
 }
 
@@ -76,6 +77,7 @@ function draw() {
   block_bovenL.drawBlock();
   block_bovenR.drawBlock();
   block_speler.drawSpelerblocks();
+  block_speler_2.drawSpelerblocks();
   puck1.drawPuck();
   fill(0);
 
@@ -87,7 +89,13 @@ function draw() {
   }
   else{
     puck1.c = "black";
+
+  if (puck1.y + 0.6 * puck1.h > block_speler_2.y && puck1.y < block_speler_2.y + block_speler_2.h){
+    if (puck1.x + 0.6 * puck1.w > block_speler_2.x && puck1.x < block_speler_2.x + block_speler_2.w){
+      puck1.vy = puck1.vy * -1;
   }
+}
+}
 }
 
 // 	fill(0);
