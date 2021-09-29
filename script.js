@@ -47,7 +47,7 @@ class Spelerblocks {
     
   }
   drawSpelerblocks() {
-    rect(this.x, this.y, this.w, this.h, this.xspeed);
+    rect(this.x, this.y, this.w, this.h);
     this.x = this.x + this.xspeed;
     
   }
@@ -104,11 +104,11 @@ function keyPressed() {
 	switch(keyCode) {
 		case 37:
 		case 65:
-			block_speler.xspeed = 2
+			block_speler.xspeed = -2;
 			break;
 		case 39:
 		case 68:
-			block_speler.xspeed = -2;
+			block_speler.xspeed = 2;
 			break;
 		case 38:
 		case 87:
