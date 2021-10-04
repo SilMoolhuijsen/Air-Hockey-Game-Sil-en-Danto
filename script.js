@@ -86,16 +86,28 @@ function draw() {
       puck1.vy = puck1.vy * -1;
     }
     
+
+
   }
   else{
     puck1.c = "black";
 
-  if (puck1.y + 0.6 * puck1.h > block_speler_2.y && puck1.y < block_speler_2.y + block_speler_2.h){
+  if (puck1.y + 0.6 * puck1.h < block_speler_2.y && puck1.y > block_speler_2.y + block_speler_2.h){
     if (puck1.x + 0.6 * puck1.w > block_speler_2.x && puck1.x < block_speler_2.x + block_speler_2.w){
       puck1.vy = puck1.vy * -1;
+
+  if (puck1.x - 0.6 * puck1.w < block_links.x + block_links.w){
+    puck1.vx = puck1.vx * -1;
+  }
   }
 }
 }
+ if (mouseX > 250){
+   block_speler_2.xspeed = 4;
+ }
+ if (mouseX < 250){
+   block_speler_2.xspeed = -4;
+ }
 }
 
 // 	fill(0);
@@ -112,19 +124,19 @@ function keyPressed() {
 	switch(keyCode) {
 		case 37:
 		case 65:
-			block_speler.xspeed = -2;
+			block_speler.xspeed = -4;
 			break;
 		case 39:
 		case 68:
-			block_speler.xspeed = 2;
+			block_speler.xspeed = 4;
 			break;
 		case 38:
 		case 87:
-			yspeed = -2;
+			yspeed = -4;
 			break;
 		case 40:
 		case 83:
-			yspeed = 2;
+			yspeed = 4;
 			break;
 	}
 }
