@@ -81,8 +81,8 @@ function draw() {
   puck1.drawPuck();
   fill(0);
 
-  if (puck1.y + 0.6 * puck1.h > block_speler.y && puck1.y < block_speler.y + block_speler.h){
-    if (puck1.x + 0.6 * puck1.w > block_speler.x && puck1.x < block_speler.x + block_speler.w){
+  if (puck1.y + 0.6 * puck1.h > block_speler.y && puck1.y - 0.6 * puck1.h < block_speler.y + block_speler.h){
+    if (puck1.x + 0.6 * puck1.w > block_speler.x && puck1.x - 0.6 * puck1.w < block_speler.x + block_speler.w){
       puck1.vy = puck1.vy * -1;
     }
     
@@ -91,23 +91,40 @@ function draw() {
   }
   else{
     puck1.c = "black";
+  }
 
   if (puck1.y + 0.6 * puck1.h < block_speler_2.y && puck1.y > block_speler_2.y + block_speler_2.h){
     if (puck1.x + 0.6 * puck1.w > block_speler_2.x && puck1.x < block_speler_2.x + block_speler_2.w){
       puck1.vy = puck1.vy * -1;
-
+    }
+  }
   if (puck1.x - 0.6 * puck1.w < block_links.x + block_links.w){
     puck1.vx = puck1.vx * -1;
   }
+  if (puck1.x + 0.5 * puck1.w > block_rechts.x){
+    puck1.vx = puck1.vx * -1;
   }
-}
-}
+  if (puck1.y + 0.6 * puck1.h > block_benedenL.y){
+    puck1.vy = puck1.vy * -1;
+  }
+
+
  if (mouseX > 250){
    block_speler_2.xspeed = 4;
  }
  if (mouseX < 250){
    block_speler_2.xspeed = -4;
  }
+
+ if (puck1.y > 370){
+   if (puck1.x > 175 && puck1.x < 325){
+     puck1.x = 300
+     puck1.y = 300
+     puck1.vx = 5
+     puck1.vy = 5
+   }
+ }
+
 }
 
 // 	fill(0);
