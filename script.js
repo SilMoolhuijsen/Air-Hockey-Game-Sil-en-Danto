@@ -81,33 +81,36 @@ function draw() {
   puck1.drawPuck();
   fill(0);
 
-  if (puck1.y + 0.6 * puck1.h > block_speler.y && puck1.y - 0.6 * puck1.h < block_speler.y + block_speler.h){
-    if (puck1.x + 0.6 * puck1.w > block_speler.x && puck1.x - 0.6 * puck1.w < block_speler.x + block_speler.w){
-      puck1.vy = puck1.vy * -1;
-    }
-    
-
-
+  if (puck1.y + 0.58 * puck1.h > block_speler.y && puck1.y - 0.58 * puck1.h < block_speler.y + block_speler.h && puck1.x + 0.58 * puck1.w > block_speler.x && puck1.x - 0.58 * puck1.w < block_speler.x + block_speler.w){
+    puck1.vy = puck1.vy * -1;
   }
+
+  if (puck1.y + 0.58 * puck1.h < block_speler_2.y && puck1.y > block_speler_2.y + block_speler_2.h && puck1.x + 0.58 * puck1.w > block_speler_2.x && puck1.x < block_speler_2.x + block_speler_2.w){
+    puck1.vy = puck1.vy * -1;
+  }
+
   else{
     puck1.c = "black";
   }
 
-  if (puck1.y + 0.6 * puck1.h < block_speler_2.y && puck1.y > block_speler_2.y + block_speler_2.h){
-    if (puck1.x + 0.6 * puck1.w > block_speler_2.x && puck1.x < block_speler_2.x + block_speler_2.w){
-      puck1.vy = puck1.vy * -1;
-    }
-  }
-  if (puck1.x - 0.6 * puck1.w < block_links.x + block_links.w){
+  if (puck1.x - 0.58 * puck1.w < block_links.x + block_links.w){
     puck1.vx = puck1.vx * -1;
   }
-  if (puck1.x + 0.5 * puck1.w > block_rechts.x){
+  if (puck1.x + 0.58 * puck1.w > block_rechts.x){
     puck1.vx = puck1.vx * -1;
   }
-  if (puck1.y + 0.6 * puck1.h > block_benedenL.y){
+  if (puck1.y + 0.58 * puck1.h > block_benedenL.y && puck1.x - puck1.w * 0.55 < block_benedenL.x + block_benedenL.w){
     puck1.vy = puck1.vy * -1;
   }
-
+  if (puck1.y + 0.58 * puck1.h > block_benedenR.y && puck1.x + puck1.w * 0.55 > block_benedenR.x){
+    puck1.vy = puck1.vy * -1;
+  }
+  if (puck1.y - 0.58 * puck1.h < block_bovenL.y + block_bovenL.h && puck1.x - puck1.w * 0.55 < block_bovenL.x + block_bovenL.w){
+    puck1.vy = puck1.vy * -1;
+  }
+  if (puck1.y - 0.58 * puck1.h < block_bovenR.y + block_bovenR.h && puck1.x + puck1.w * 0.55 > block_bovenR.x){
+    puck1.vy = puck1.vy * -1;
+  }
 
  if (mouseX > 250){
    block_speler_2.xspeed = 4;
