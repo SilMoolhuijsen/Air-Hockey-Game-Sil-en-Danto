@@ -1,8 +1,7 @@
 var gameState = 0;
 var punten1 = 0;
 var punten2 = 0;
-
-
+var puck1spawns = 1;
 var blocks = [];
 
 let bg;
@@ -16,14 +15,14 @@ function setup() {
   createCanvas(400, 600);
   goal2 = new Block(width/2 - 100, 0, 200, 40);
   goal = new Block(width/2 - 100, height - 60, 200, 40);
-  block_speler = new Spelerblocks(210, height - 80, 80, 10, 0)
-  block_speler_2 = new Computerblocks(210, 50, 80, 10, 0)
+  block_speler = new SpelerBlock(210, height - 80, 80, 10, 0)
+  block_speler_2 = new Speler2Block(210, 50, 80, 10, 0)
 
   blocks.push(goal2);
   blocks.push(goal);
   blocks.push(block_speler);
   blocks.push(block_speler_2);
-  puck1 = new Puck(250, 200, 10, 10, 5, 5, "black")
+  puck1 = new Puck(250, 300, 10, 10, 5, 5, "black")
 }
 
 
@@ -82,14 +81,21 @@ class Block {
   checkCollision() {
     if (puck1.y + puck1.h > this.y && puck1.y < this.y + this.h) {
       if (puck1.x + puck1.w > this.x && puck1.x < this.x + this.w) {
+        if (puck1spawns % 2 == 1){
+          puck1.vy = -Math.abs(puck1.vy)
+        }
+        else{
+          puck1.vy = Math.abs(puck1.vy)
+        }
         puck1.y = height / 2;
-        this.score++;        
+        this.score++;
+        puck1spawns += 1
       }
     }
   }
 }
 
-class Spelerblocks {
+class SpelerBlock {
   constructor(x, y, w, h, xspeed) {
     this.x = x;
     this.y = y;
@@ -113,7 +119,7 @@ class Spelerblocks {
   }
 }
 
-class Computerblocks {
+class Speler2Block {
   constructor(x, y, w, h, xspeed) {
     this.x = x;
     this.y = y;
