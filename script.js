@@ -10,6 +10,8 @@ function preload() {
   bg = loadImage('bg.png');
 }
 
+
+
 function setup() {
   createCanvas(400, 600);
   goal2 = new Block(width/2 - 100, 0, 200, 40);
@@ -163,8 +165,9 @@ function game() {
 
 function menu() {
   background("#aaaaaa");
+  textSize(30)
   text("press 1 to start", 70, 70);
-  text("press 2 to open menu", 70, 100);
+  text("press 2 to open menu", 70, 120);
 }
 
 function keyPressed() {
