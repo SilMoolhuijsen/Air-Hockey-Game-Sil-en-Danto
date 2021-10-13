@@ -1,12 +1,30 @@
-var gameState = 1;
+var gameState = 0;
 
 function draw() {
   background(225);
   if (gameState == 1) {
     game();
   }
+  if (gameState == 0) {
+    menu();
+  }
 
 }
+
+function setup() {
+  createCanvas(500, 400);
+  block_links = new Block(0, 0, 10, 400);
+  block_rechts = new Block(489, 0, 10, 400);
+  block_benedenL = new Block(0, 390, 175, 10);
+  block_benedenR = new Block(325, 390, 175, 10);
+  block_bovenL = new Block(0, 0, 175, 10);
+  block_bovenR = new Block(325, 0, 175, 10);
+  block_speler = new Spelerblocks(210, 350, 80, 10, 0)
+  block_speler_2 = new Spelerblocks(210, 50, 80, 10, 0)
+  puck1 = new Puck(300, 300, 50, 50, 5, 5, "black")
+}
+
+
 class Puck {
   constructor(x, y, w, h, vx, vy, c) {
     this.x = x;
@@ -62,18 +80,6 @@ class Spelerblocks {
   }
 }
 
-function setup() {
-  createCanvas(500, 400);
-  block_links = new Block(0, 0, 10, 400);
-  block_rechts = new Block(489, 0, 10, 400);
-  block_benedenL = new Block(0, 390, 175, 10);
-  block_benedenR = new Block(325, 390, 175, 10);
-  block_bovenL = new Block(0, 0, 175, 10);
-  block_bovenR = new Block(325, 0, 175, 10);
-  block_speler = new Spelerblocks(210, 350, 80, 10, 0)
-  block_speler_2 = new Spelerblocks(210, 50, 80, 10, 0)
-  puck1 = new Puck(300, 300, 50, 50, 5, 5, "black")
-}
 
 //var [xpos, ypos, xspeed, yspeed] = [225, 225, 0, 0];
 
@@ -90,12 +96,12 @@ function game() {
   puck1.drawPuck();
   fill(0);
 
+  if (block_links.x + block_links.w > block_speler.x && block_speler.x + block_speler.w > block_rechts.x){
+    block.speler.vx = 0;
+  }
+
   if (puck1.y + 0.58 * puck1.h > block_speler.y && puck1.y - 0.58 * puck1.h < block_speler.y + block_speler.h && puck1.x + 0.58 * puck1.w > block_speler.x && puck1.x - 0.58 * puck1.w < block_speler.x + block_speler.w){
     puck1.vy = puck1.vy * -1;
-  }
-  
-  if (puck1.x + 0.58 * puck1.w > block_speler.x && puck1.x - 0.58 * puck1.w < block_speler.x + block_speler.w && block_speler.y + block_speler.h > puck1.y < block_speler.y){
-    puck1.vx = puck1.vx * -1;
   }
 
   if (puck1.y + 0.58 * puck1.h < block_speler_2.y && puck1.y > block_speler_2.y + block_speler_2.h && puck1.x + 0.58 * puck1.w > block_speler_2.x && puck1.x < block_speler_2.x + block_speler_2.w){
@@ -152,6 +158,12 @@ function game() {
 // 	if(xpos >= 0 && xpos + 50 <= 500) xpos += xspeed;
 // 	if(ypos >= 0 && ypos + 50 <= 500) ypos += yspeed;
 // }
+function menu() {
+  background("#aaaaaa");
+  text("press 1 to start", 70, 70);
+  text("press 2 to open menu", 70, 100);
+}
+
 
 function keyPressed() {
 	switch(keyCode) {
@@ -172,6 +184,12 @@ function keyPressed() {
 			yspeed = 4;
 			break;
 	}
+  if (keyCode == 49) {
+    gameState = 1;
+  }
+  if (keyCode == 50) {
+    gameState = 0;
+  }
 }
 
 function keyReleased() {
