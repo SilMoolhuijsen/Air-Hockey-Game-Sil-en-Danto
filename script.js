@@ -5,7 +5,7 @@ var punten1 = 0;
 var punten2 = 0;
 
 
-var spelers = [];
+var blocks = [];
 
 function draw() {
   background(225);
@@ -20,14 +20,16 @@ function draw() {
 
 function setup() {
   createCanvas(500, 400);
-  goal = new Block(250, 0, 200, 40);
+  goal2 = new Block(150, 0, 200, 40);
+  goal = new Block(150, 360, 200, 40);
   block_speler = new Spelerblocks(210, 350, 80, 10, 0)
   block_speler_2 = new Computerblocks(210, 50, 80, 10, 0)
 
-  spelers.push(goal);
-  spelers.push(block_speler);
-  spelers.push(block_speler_2);
-  puck1 = new Puck(250, 200, 50, 50, 5, 5, "black")
+  blocks.push(goal2);
+  blocks.push(goal);
+  blocks.push(block_speler);
+  blocks.push(block_speler_2);
+  puck1 = new Puck(250, 200, 10, 10, 5, 5, "black")
 }
 
 class Puck {
@@ -62,7 +64,8 @@ class Block {
     this.y = y;
     this.w = w;
     this.h = h;
-    this.c = "red";
+    this.c = "#ededed";
+    this.score = 0;
   }
   draw() {
     fill(this.c);
@@ -72,7 +75,8 @@ class Block {
   checkCollision() {
     if (puck1.y + puck1.h > this.y && puck1.y < this.y + this.h) {
       if (puck1.x + puck1.w > this.x && puck1.x < this.x + this.w) {
-        console.log("SCORE!")
+        puck1.y = height / 2;
+        this.score++;        
       }
     }
   }
@@ -132,30 +136,28 @@ class Computerblocks {
 
 
 function game() {
-  background(225);
+  
+  // speelveld
+  fill(0)
+  rect(0,0, width, height);
 
-  spelers.forEach((s) => {
+  fill(235)
+  rect(10,10, width -20, height-20);
+  // END speelveld
+
+  blocks.forEach((s) => {
     s.draw();
     s.checkCollision();
   })
+
   puck1.drawPuck();
   fill(0);
 
   textSize(40);
-  text(punten1, 240, 100)
+  text(goal.score, 240, 100)
   fill(10);
 
-  text(punten2, 240, 300)
-
-  if (puck1.y > 370) {
-    if (puck1.x > 175 && puck1.x < 325) {
-      puck1.x = 250
-      puck1.y = 200
-      puck1.vx = 5
-      puck1.vy = 5
-      punten1 = punten1 + 1
-    }
-  }
+  text(goal2.score, 240, 300)  
 
 }
 
