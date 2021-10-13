@@ -1,11 +1,29 @@
 var gameState = 0;
-
 var punten1 = 0;
-
 var punten2 = 0;
 
 
 var blocks = [];
+
+let bg;
+function preload() {
+  bg = loadImage('bg.png');
+}
+
+function setup() {
+  createCanvas(400, 600);
+  goal2 = new Block(width/2 - 100, 0, 200, 40);
+  goal = new Block(width/2 - 100, height - 60, 200, 40);
+  block_speler = new Spelerblocks(210, height - 80, 80, 10, 0)
+  block_speler_2 = new Computerblocks(210, 50, 80, 10, 0)
+
+  blocks.push(goal2);
+  blocks.push(goal);
+  blocks.push(block_speler);
+  blocks.push(block_speler_2);
+  puck1 = new Puck(250, 200, 10, 10, 5, 5, "black")
+}
+
 
 function draw() {
   background(225);
@@ -18,19 +36,6 @@ function draw() {
 
 }
 
-function setup() {
-  createCanvas(500, 400);
-  goal2 = new Block(150, 0, 200, 40);
-  goal = new Block(150, 360, 200, 40);
-  block_speler = new Spelerblocks(210, 350, 80, 10, 0)
-  block_speler_2 = new Computerblocks(210, 50, 80, 10, 0)
-
-  blocks.push(goal2);
-  blocks.push(goal);
-  blocks.push(block_speler);
-  blocks.push(block_speler_2);
-  puck1 = new Puck(250, 200, 10, 10, 5, 5, "black")
-}
 
 class Puck {
   constructor(x, y, w, h, vx, vy, c) {
@@ -135,14 +140,9 @@ class Computerblocks {
 }
 
 
-function game() {
-  
+function game() {  
   // speelveld
-  fill(0)
-  rect(0,0, width, height);
-
-  fill(235)
-  rect(10,10, width -20, height-20);
+  image(bg,0,0, width, height); 
   // END speelveld
 
   blocks.forEach((s) => {
@@ -154,10 +154,10 @@ function game() {
   fill(0);
 
   textSize(40);
-  text(goal.score, 240, 100)
+  text(goal.score, width / 2, 100)
   fill(10);
 
-  text(goal2.score, 240, 300)  
+  text(goal2.score, width / 2, height - 100)  
 
 }
 
