@@ -1,3 +1,12 @@
+var gameState = 1;
+
+function draw() {
+  background(225);
+  if (gameState == 1) {
+    game();
+  }
+
+}
 class Puck {
   constructor(x, y, w, h, vx, vy, c) {
     this.x = x;
@@ -68,7 +77,7 @@ function setup() {
 
 //var [xpos, ypos, xspeed, yspeed] = [225, 225, 0, 0];
 
-function draw() {
+function game() {
   background(225);
   block_links.drawBlock();
   block_rechts.drawBlock();
@@ -83,6 +92,10 @@ function draw() {
 
   if (puck1.y + 0.58 * puck1.h > block_speler.y && puck1.y - 0.58 * puck1.h < block_speler.y + block_speler.h && puck1.x + 0.58 * puck1.w > block_speler.x && puck1.x - 0.58 * puck1.w < block_speler.x + block_speler.w){
     puck1.vy = puck1.vy * -1;
+  }
+  
+  if (puck1.x + 0.58 * puck1.w > block_speler.x && puck1.x - 0.58 * puck1.w < block_speler.x + block_speler.w && block_speler.y + block_speler.h > puck1.y < block_speler.y){
+    puck1.vx = puck1.vx * -1;
   }
 
   if (puck1.y + 0.58 * puck1.h < block_speler_2.y && puck1.y > block_speler_2.y + block_speler_2.h && puck1.x + 0.58 * puck1.w > block_speler_2.x && puck1.x < block_speler_2.x + block_speler_2.w){
