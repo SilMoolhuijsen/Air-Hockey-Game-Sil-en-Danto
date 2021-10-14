@@ -13,8 +13,8 @@ function preload() {
 
 function setup() {
   createCanvas(400, 600);
-  goal2 = new Block(width/2 - 100, 0, 200, 40);
-  goal = new Block(width/2 - 100, height - 60, 200, 40);
+  goal2 = new Block(width / 2 - 100, 0, 200, 40);
+  goal = new Block(width / 2 - 100, height - 60, 200, 40);
   block_speler = new SpelerBlock(210, height - 80, 80, 10, 0)
   block_speler_2 = new Speler2Block(210, 50, 80, 10, 0)
 
@@ -33,6 +33,9 @@ function draw() {
   }
   if (gameState == 0) {
     menu();
+  }
+  if (gameState == 3) {
+    gameover();
   }
 
 }
@@ -81,15 +84,18 @@ class Block {
   checkCollision() {
     if (puck1.y + puck1.h > this.y && puck1.y < this.y + this.h) {
       if (puck1.x + puck1.w > this.x && puck1.x < this.x + this.w) {
-        if (puck1spawns % 2 == 1){
+        if (puck1spawns % 2 == 1) {
           puck1.vy = -Math.abs(puck1.vy)
         }
-        else{
+        else {
           puck1.vy = Math.abs(puck1.vy)
         }
         puck1.y = height / 2;
         this.score++;
         puck1spawns += 1
+        if (this.score == 5) {
+          gameState = 3
+        }
       }
     }
   }
@@ -148,9 +154,9 @@ class Speler2Block {
 }
 
 
-function game() {  
+function game() {
   // speelveld
-  image(bg,0,0, width, height); 
+  image(bg, 0, 0, width, height);
   // END speelveld
 
   blocks.forEach((s) => {
@@ -165,15 +171,30 @@ function game() {
   text(goal.score, width / 2, 100)
   fill(10);
 
-  text(goal2.score, width / 2, height - 100)  
+  text(goal2.score, width / 2, height - 100)
+
 
 }
 
 function menu() {
   background("#aaaaaa");
   textSize(30)
-  text("press 1 to start", 70, 70);
-  text("press 2 to open menu", 70, 120);
+  text("press 1 to start", 40, 70);
+  text("press 2 to open menu", 40, 120);
+  text("if one player has a score ", 40, 170)
+  text("of 5 the game ends", 40, 200)
+}
+
+function gameover() {
+  background("#aaaaaa");
+  textSize(30)
+  text("press 1 to start", 40, 120);
+  text("press 2 to open menu", 40, 170);
+  fill(255, 0, 0,)
+  text("Game over", 40, 70,)
+  goal.score = 0;
+  goal2.score = 0;
+
 }
 
 function keyPressed() {
