@@ -132,8 +132,8 @@ class Speler2Block {
     this.w = w;
     this.h = h;
     this.xspeed = xspeed;
-
   }
+
   draw() {
     if (keyIsDown(LEFT_ARROW)) {
       this.x -= 5;
@@ -142,6 +142,13 @@ class Speler2Block {
       this.x += 5;
     }
     rect(this.x, this.y, this.w, this.h);
+    
+    if (this.x <= 10) {
+      this.x = this.x += 5;
+    }
+    if (this.x + this.w >= width - 10) {
+      this.x = this.x -= 5;
+    }
   }
 
   checkCollision() {
@@ -151,6 +158,7 @@ class Speler2Block {
       }
     }
   }
+
 }
 
 
